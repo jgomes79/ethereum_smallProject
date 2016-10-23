@@ -26,14 +26,13 @@ contract MyCoin {
 	function sendCoin(uint amount) returns(bool sufficient) {
 		if (balances[msg.sender] < amount) return false;
 
-		//if (receiver == tx.origin) {
-				balances[msg.sender] -= amount;
-				balances[externalAccountA] += (amount/2);
-				balances[externalAccountB] += (amount/2);
+		balances[msg.sender] -= amount;
+		balances[externalAccountA] += (amount/2);
+		balances[externalAccountB] += (amount/2);
 
-				Transfer(msg.sender, externalAccountA, (amount/2));
-				Transfer(msg.sender, externalAccountB, (amount/2));
-		//}
+		Transfer(msg.sender, externalAccountA, (amount/2));
+		Transfer(msg.sender, externalAccountB, (amount/2));
+
 		return true;
 	}
 
